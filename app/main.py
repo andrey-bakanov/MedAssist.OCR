@@ -6,7 +6,7 @@ from slowapi.errors import RateLimitExceeded
 from .config import get_settings
 from .middleware.rate_limiter import limiter
 from .middleware.queue_manager import queue_manager
-from .routes import image_route, pdf_route, docx_route, health_route, image_text_route
+from .routes import image_route, pdf_route, docx_route, health_route, image_text_route, pdf_llm_route
 
 settings = get_settings()
 
@@ -33,6 +33,7 @@ queue_manager.initialize()
 
 app.include_router(image_route.router)
 app.include_router(pdf_route.router)
+app.include_router(pdf_llm_route.router)
 app.include_router(docx_route.router)
 app.include_router(health_route.router)
 app.include_router(image_text_route.router)
